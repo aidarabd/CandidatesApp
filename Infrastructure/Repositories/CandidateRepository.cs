@@ -1,5 +1,4 @@
 ﻿using Application.Interfaces;
-using Application.Models;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -16,7 +15,7 @@ public class CandidateRepository(IDbContext dbContext) : ICandidateRepository, I
         await dbContext.SaveChangesAsync();
     }
 
-    public async Task Update(Candidate candidate)
+    public async Task UpdateAsync(Candidate candidate)
     {
         dbContext.Candidates.Update(candidate);
         await dbContext.SaveChangesAsync();

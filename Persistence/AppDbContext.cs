@@ -6,14 +6,17 @@ namespace Persistence;
 
 public class AppDbContext : DbContext, IDbContext
 {
+    public AppDbContext(){}
     
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public AppDbContext(DbContextOptions<AppDbContext> options)
+        : base(options)
     {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseNpgsql("DbConnection");
-        }
-        base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    { 
+        //here we can change SQL type for our need
+        optionsBuilder.UseNpgsql("Server=localhost; Port=5432;Database=candidates_db; Username=postgres;Password=123; Pooling=true;MinPoolSize=1;MaxPoolSize=200;IncludeErrorDetail=true;");
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
