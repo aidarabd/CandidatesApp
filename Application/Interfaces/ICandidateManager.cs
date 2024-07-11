@@ -1,6 +1,6 @@
-﻿using WebApplication1.Application.Models;
+﻿using Application.Models;
 
-namespace WebApplication1.Application.Interfaces;
+namespace Application.Interfaces;
 
 public interface ICandidateManager
 {

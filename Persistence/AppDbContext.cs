@@ -1,7 +1,6 @@
-﻿using Application.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Domain.Entities;
 
 namespace Persistence;
 
@@ -12,17 +11,22 @@ public class AppDbContext : DbContext, IDbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseNpgsql("your_connection_string_here");
-            // Or configure another database provider
+            optionsBuilder.UseNpgsql("DbConnection");
         }
         base.OnConfiguring(optionsBuilder);
     }
-
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         base.OnModelCreating(builder);
+    }
+
+    public DbSet<Candidate> Candidates { get; set; }
+    
+    public async Task<int> SaveChangesAsync()
+    {
+        return await base.SaveChangesAsync();
     }
 }

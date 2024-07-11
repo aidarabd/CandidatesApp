@@ -20,6 +20,6 @@ public class Candidate : Entity
 
     public string? LinkedinUrl { get; set; }
 
-    public string? ProfileUrl { get; set; }
+    public string? GithubUrl { get; set; }
 
 }
