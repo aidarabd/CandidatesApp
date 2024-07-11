@@ -1,6 +1,8 @@
-﻿namespace Application.Models;
+﻿using Application.Interfaces;
 
-public class CandidateDto
+namespace Application.Models;
+
+public class CandidateDto : IDto
 {
     public string FirstName { get; set; }
 
