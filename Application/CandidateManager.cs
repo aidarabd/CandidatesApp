@@ -11,6 +11,11 @@ public class CandidateManager(ICandidateRepository candidateRepository, IMapper 
 
     public async Task AddEditUser(CandidateDto dto)
     {
+        //      We could cache newly added candidates with thei e-mail as a key for specific time. Reason for that may be 
+        // most of the time users update newly added form. 
+        
+        //      So before asking database it would be great if we could fetch the data from memory. Redis would be great as separate service
+        
         var candidate = await candidateRepository.GetByEmail(dto.Email);
 
         if (candidate == null)
